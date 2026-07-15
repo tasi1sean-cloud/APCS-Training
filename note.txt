@@ -1,0 +1,4 @@
+lower_bound 找到第一個>=target的位置
+upper_bound 找到第一個>target 的位置
+upper_bound(vt.begin(),vt.end(),target)
+相當於 Python 的 bisect_left
