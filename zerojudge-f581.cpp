@@ -1,29 +1,29 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>   // lower_bound
 using namespace std;
-typedef long long ll;
-int main() {
-  int n,m;
+
+int main(){
+  int n, m;
   cin >> n >> m;
-  vector <ll> p(n);
-  vector <ll> primex(n);
-  for (int i=0;i<n;i++){
-    cin >> p[i];
-    if (i!=0) primex[i]=primex[i-1]+p[i];
-    else primex[i]=p[i];
+  vector<int> room(n), prefix(n);
+  for(int i = 0; i < n; ++i){
+    cin >> room[i];
+    if(i != 0) prefix[i] = prefix[i-1] + room[i];
+    else prefix[i] = room[i];
   }
-  int now=0;
-  while (m--){
-    ll q;
-    cin >> q;
-    ll target;
-    if (now!=0)  target = q+primex[now-1];
-    else  target = q;
-    while(target>primex[n-1]){
-      now=0;
-      target = target - primex[n-1];
+  int idx = 0;
+  while(m--){
+    int target;
+    cin >> target;
+    if(idx > 0) target = prefix[idx-1] + target;
+    if(target > prefix[n-1]){
+      idx = 0;
+      target = target - prefix[n-1];
     }
-    now = ((lower_bound(primex.begin(),primex.end(),target) - primex.begin()) + 1)%n;
+    int left = lower_bound(prefix.begin(), prefix.end(), target) - prefix.begin();
+    idx = (left + 1) % n;
   }
-  cout << now << endl;
+  cout << idx << "\n";
   return 0;
 }

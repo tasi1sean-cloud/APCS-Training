@@ -1,7 +1,8 @@
-lower_bound 找到第一個>=target的位置 找到後要減begin?
-upper_bound 找到第一個>target 的位置
-upper_bound(vt.begin(),vt.end(),target)
 相當於 Python 的 bisect_left
 判斷何種有單調性用二分搜
 vt.front() vt.back() 為提出第一與最後的一個元素的值
 前綴合
+lower_bound：找出vector中「大於或等於」val的「最小值」的位置：
+auto it = lower_bound(v.begin(), v.end(), val);
+upper_bound：找出vector中「大於」val的「最小值」的位置：
+auto it = upper_bound(v.begin(), v.end(), val);(-v.begin())
