@@ -26,10 +26,10 @@ int main(){
 
     sort(b.begin(),b.end());
     sort(p.begin(),p.end());
-    int r=min(n,m) l=0;
+    int r=min(n,m),l=0;
     int ans = 0;
     while(l<=r){
-        int mid=l+r/2
+        int mid=(l+r)/2;
         if (check(mid)){
             ans = mid;
             l=mid+1;
