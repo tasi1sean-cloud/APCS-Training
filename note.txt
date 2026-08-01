@@ -6,3 +6,44 @@ lower_bound：找出vector中「大於或等於」val的「最小值」的位置
 auto it = lower_bound(v.begin(), v.end(), val);
 upper_bound：找出vector中「大於」val的「最小值」的位置：
 auto it = upper_bound(v.begin(), v.end(), val);(-v.begin())
+queue<int> q;
+!q.empty()//q不為空
+q.push() q.pop()
+幫這個程式debug
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+char m1;
+int n;
+int ans=0;
+vector<vector<pair<int,int>>> vt;
+void bfs(int x,int y){
+  queue<pair<int,int>> q;
+  q.push({x,y});
+  while(!q.empty()){
+    int nx=q.front().first,ny=q.front().second;
+    int now=ny;
+    q.pop();
+    int s=vt[nx].size();
+    for (int i=0;i<s;i++){
+      q.push({vt[nx][i].first,now+vt[nx][i].second});
+    }
+    ans=max(ans,now);
+  }
+}
+int main(){
+  cin >> m1 >> n;
+  int m = m1 - 'A';
+  vt.assign(26,{});
+  while (n--){
+    char p1,c1;
+    int w;
+    cin >> p1 >> c1 >> w;
+    int p=p1-'A',c=c1-'A';
+    vt[p].push_back({c,w});
+  }
+  bfs(m,0);
+  cout << ans;
+  return 0;
+}
