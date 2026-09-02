@@ -48,3 +48,25 @@ int main(){
   return 0;
 }
 背 find 函式
+unordered_map 不排序的map 命名建議ump:/
+新演算法backtracking
+vector<vector<int>> ans;
+    vector<int> vt;
+    
+    void dfs(int start, int n, int k){
+        if(vt.size() == k){
+            ans.push_back(vt);
+            return ;
+        }
+         for(int i = start; i <= n; ++i){
+            vt.push_back(i);
+            dfs(i+1, n, k);
+            vt.pop_back();
+        }
+    }
+
+    vector<vector<int>> combine(int n, int k) {
+        dfs(1, n, k);
+        return ans;
+    }
+用visited backtracking
