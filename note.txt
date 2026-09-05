@@ -70,3 +70,4 @@ vector<vector<int>> ans;
         return ans;
     }
 用visited backtracking
+stoi("525") //string to integer 可直接把字串換整數
