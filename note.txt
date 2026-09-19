@@ -71,3 +71,4 @@ vector<vector<int>> ans;
     }
 用visited backtracking
 stoi("525") //string to integer 可直接把字串換整數
+sqrt() 可開根號
