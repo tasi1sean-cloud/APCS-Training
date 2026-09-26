@@ -1,30 +1,25 @@
 class Solution {
 public:
-    vector<vector<int>> adj;
-
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        adj.assign(numCourses, {});
-        vector<int> indegree(numCourses, 0);
-        for(int i = 0; i < prerequisites.size(); ++i){
-            int c = prerequisites[i][0], p = prerequisites[i][1];
-            adj[p].push_back(c);
-            indegree[c]++;
+    vector<vector<int>> ans;
+    vector<int> now;
+    vector<bool> visited;
+    void backtracking(int start_, vector<int> nums) {
+        if (now.size() == nums.size()) {
+            ans.push_back(now);
+            return;
         }
-        queue<int> q;
-        for(int i = 0; i < numCourses; ++i){
-            if(indegree[i] == 0) q.push(i);
-        }
-        int visited = 0;
-        while(!q.empty()){
-            int node = q.front();
-            q.pop();
-            ++visited;
-            for(int i = 0; i < adj[node].size(); ++i){
-                int neighbor = adj[node][i];
-                indegree[neighbor]--;
-                if(indegree[neighbor] == 0) q.push(neighbor);
+        for (int i = start_; i < nums.size(); i++) {
+            if(!visited[i]){now.push_back(nums[i]);
+            visited[i]=true;
+            backtracking(0,nums);
+                now.pop_back();
+                visited[i]=false;
             }
         }
-        return visited == numCourses;
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        visited.assign(nums.size(),false);
+        backtracking(0,nums);
+        return ans;
     }
 };
